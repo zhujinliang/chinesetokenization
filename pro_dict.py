@@ -13,7 +13,7 @@ class ProDict(object):
         self.train_file = train_file
         self.pro_dict = self._get_pro_dict()
 
-    def is_vocable(self, vocable):
+    def has_vocable(self, vocable):
         if vocable in self.pro_dict:
             return True
         else:
@@ -91,14 +91,23 @@ class ProDict(object):
             sen_words = self.get_sen_words()
             for s in sen_words:
                 for w in s:
-                    pro_dict[w] = 1
+                    if w in ['s', 'e']:
+                        continue
+                    i = s.index(w)
+                    key = s[i-1] + '_' + s[i-2]
+                    if w in pro_dict:
+                        if key in pro_dict[w]:
+                            pro_dict[w][key] += 1
+                        else:
+                            pro_dict[w].update({key: 1})
+                    else:
+                        pro_dict[w] = {key: 1}
             pro_dict_file = open(pro_dict_file_name, 'w')
             cPickle.dump(pro_dict, pro_dict_file)
         else:
             pro_dict_file = open(pro_dict_file_name, 'r')
             pro_dict = cPickle.load(pro_dict_file)
         pro_dict_file.close()
-        import ipdb; ipdb.set_trace()
         return pro_dict
 
         
