@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import re
+import cPickle
+import os
 
 class ProDict(object):
     ''' Get train set for tokenization. '''
@@ -9,7 +11,7 @@ class ProDict(object):
 
     def __init__(self, train_file):
         self.train_file = train_file
-        self.construct_pro_dict()
+        self.pro_dict = self._get_pro_dict()
 
     def is_vocable(self, vocable):
         if vocable in self.pro_dict:
@@ -25,25 +27,81 @@ class ProDict(object):
             lines[i] = 's  ' + lines[i][0:-2] + ' e ' + lines[i][-1]
         return lines
 
-    def construct_pro_dict(self):
-        f = file(self.train_file)
-        lines = f.readlines()
-        f.close()
-        re_han = re.compile(ur'([\u4E00-\u9FA5\s]+)')
-        re_skip = re.compile(ur'([\.0-9]+|[a-zA-Z0-9]+)')
-        re_eng = re.compile(ur'[a-zA-Z0-9]+')
-        re_num = re.compile(ur'[\.0-9]+')
-        all_words = []
+    def get_short_sen(self):
+        # short_sen contains many small sentences string in list.
+        short_sen= []
+        short_sen_file_name = 'short_sen.txt'
+        if not os.path.exists(short_sen_file_name):
+            f = open(self.train_file)
+            lines = f.readlines()
+            f.close()
+            re_han = re.compile(ur'([\u4E00-\u9FA5]+)')
+            re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
+            for line in lines:
+                # Use unicode encode
+                line = unicode(line, 'utf-8')
+                sentences = re_biaodian.split(line.strip(' '))
+                for s in sentences:
+                    if not s in ('', ' ', '  ', '\n', ' \n', '  \n'):
+                        if s.startswith('  '):
+                            s = 's' + s
+                        else:
+                            s = 's  ' + s
+                        if s.endswith('\n'):
+                            s = s[0:-1] + 'e'
+                        if s.endswith('  '):
+                            s = s + 'e'
+                        else:
+                            s = s + '  e'
+                        short_sen.append(s)
+                # for s in short_sen:
+                #     words = s.split('  ')
+                #     sen_words.append(words)
+                    #for w in words:
+                    #    all_words[w] = 1
+                    # import ipdb; ipdb.set_trace()
+            short_sen_file = open(short_sen_file_name, 'w')
+            cPickle.dump(short_sen, short_sen_file)
+        else:
+            short_sen_file = open(short_sen_file_name, 'r')
+            short_sen = cPickle.load(short_sen_file)
+        short_sen_file.close()
+        return short_sen
+
+    def get_sen_words(self):
         sen_words = []
-        for line in lines:
-            sentences = re_han.split(line.strip(' '))
-            length = len(sentences)
-            for i in range(length):
-                sentences[i] = 's  ' + sentences[i] + 'e'
-            for s in sentences:
+        sen_words_file_name = 'sen_words.txt'
+        if not os.path.exists(sen_words_file_name):
+            short_sen = self.get_short_sen()
+            for s in short_sen:
                 words = s.split('  ')
                 sen_words.append(words)
-                all_words.extend(words)
+            sen_words_file = open(sen_words_file_name, 'w')
+            cPickle.dump(sen_words, sen_words_file)
+        else:
+            sen_words_file = open(sen_words_file_name, 'r')
+            sen_words = cPickle.load(sen_words_file)
+        sen_words_file.close()
+        return sen_words
+
+    def _get_pro_dict(self):
+        pro_dict = {}
+        pro_dict_file_name = 'pro_dict.txt'
+        if not os.path.exists(pro_dict_file_name):
+            sen_words = self.get_sen_words()
+            for s in sen_words:
+                for w in s:
+                    pro_dict[w] = 1
+            pro_dict_file = open(pro_dict_file_name, 'w')
+            cPickle.dump(pro_dict, pro_dict_file)
+        else:
+            pro_dict_file = open(pro_dict_file_name, 'r')
+            pro_dict = cPickle.load(pro_dict_file)
+        pro_dict_file.close()
+        import ipdb; ipdb.set_trace()
+        return pro_dict
+
+        
 
 
 
