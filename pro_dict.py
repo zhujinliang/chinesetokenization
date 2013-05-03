@@ -12,6 +12,7 @@ class ProDict(object):
     def __init__(self, train_file):
         self.train_file = train_file
         self.pro_dict = self._get_pro_dict()
+        self.prefix_dict = self._get_prefix_dict()
 
     def has_vocable(self, vocable):
         if vocable in self.pro_dict:
@@ -19,15 +20,23 @@ class ProDict(object):
         else:
             return False
 
-    def preprocess_train_file(self, train_file):
-        f = file(train_file)
-        lines = f.readlines()
-        f.close()
-        for i in range(len(lines)):
-            lines[i] = 's  ' + lines[i][0:-2] + ' e ' + lines[i][-1]
-        return lines
+    def get_longest_length_of_vocable(self):
+        length = 0
+        for k in self.pro_dict:
+            if len(k) > length:
+                length = len(k)
+        return length
 
-    def get_short_sen(self):
+    def get_pro(self, cur, pre1, pre2):
+        if pre2 is None:
+            prefix = 's_e'
+        else:
+            prefix = pre1 + '_' + pre2
+        pro = self.pro_dict[cur][prefix] * 1.0 / self.prefix_dict[prefix]
+        return pro
+
+
+    def _get_short_sen(self):
         # short_sen contains many small sentences string in list.
         short_sen= []
         short_sen_file_name = 'short_sen.txt'
@@ -54,12 +63,6 @@ class ProDict(object):
                         else:
                             s = s + '  e'
                         short_sen.append(s)
-                # for s in short_sen:
-                #     words = s.split('  ')
-                #     sen_words.append(words)
-                    #for w in words:
-                    #    all_words[w] = 1
-                    # import ipdb; ipdb.set_trace()
             short_sen_file = open(short_sen_file_name, 'w')
             cPickle.dump(short_sen, short_sen_file)
         else:
@@ -68,11 +71,11 @@ class ProDict(object):
         short_sen_file.close()
         return short_sen
 
-    def get_sen_words(self):
+    def _get_sen_words(self):
         sen_words = []
         sen_words_file_name = 'sen_words.txt'
         if not os.path.exists(sen_words_file_name):
-            short_sen = self.get_short_sen()
+            short_sen = self._get_short_sen()
             for s in short_sen:
                 words = s.split('  ')
                 sen_words.append(words)
@@ -88,7 +91,7 @@ class ProDict(object):
         pro_dict = {}
         pro_dict_file_name = 'pro_dict.txt'
         if not os.path.exists(pro_dict_file_name):
-            sen_words = self.get_sen_words()
+            sen_words = self._get_sen_words()
             for s in sen_words:
                 for w in s:
                     if w in ['s', 'e']:
@@ -110,9 +113,39 @@ class ProDict(object):
         pro_dict_file.close()
         return pro_dict
 
-        
+    def _get_prefix_dict(self):
+        prefix_dict = {}
+        for d in self.pro_dict.values():
+            for k, v in d.items():
+                prefix_dict[k] = prefix_dict.get(k, 0) + v
+        #for k in prefix_dict:
+        #    print k, prefix_dict[k]
+        #print len(prefix_dict)
+        return prefix_dict
 
+        
 
 
 if __name__ == '__main__':
     d = ProDict('train_seg.txt')
+    print u'训练集中最长词语长度：', d.get_longest_length_of_vocable()
+    import sys
+    args = len(sys.argv)
+    if 2 < args < 5:
+        cur = unicode(sys.argv[1], 'utf-8')
+        pre1 = unicode(sys.argv[2], 'utf-8')
+        if args == 3:
+            pre2 = None
+        else:
+            pre2 = unicode(sys.argv[3], 'utf-8')
+        print cur, pre1, pre2
+        if not d.has_vocable(cur):
+            print u'%s 不在训练集中'% cur
+        elif not d.has_vocable(pre1):
+            print u'%s 不在训练集中'% pre1 
+        elif (pre2 is not None) and (not d.has_vocable(pre2)):
+            print u'%s 不在训练集中'% pre2
+        else:
+            print 'Pro is: ', d.get_pro(cur, pre1, pre2)
+    else:
+        print u'输入三个参数，分别为当前词，前面的词1和前面的词2'
