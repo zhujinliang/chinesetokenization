@@ -26,13 +26,64 @@ class ProDict(object):
             if len(k) > length:
                 length = len(k)
         return length
+    def get_tree_token_count(self,cur,pre1,pre2):
+        # print cur
+        # print pre1
+        # print pre2
 
-    def get_pro(self, cur, pre1, pre2):
         if pre2 is None:
             prefix = 's_e'
+        elif pre2=='s':
+            pre2='s_e'
+            prefix=pre1+'_'+pre2
+        else:
+            if pre1 is None:
+                pass
+            prefix = pre1 + '_' + pre2
+        if self.pro_dict.has_key(cur):
+            if self.pro_dict[cur].has_key(prefix):
+                return self.pro_dict[cur][prefix]
+            else:
+                return 0.1
+        else:
+            return 0.1
+    def get_pre_count(self,pre1,pre2):
+        if pre2 is None:
+            prefix = 's_e'
+        elif pre2=='s':
+            pre2='s_e'
+            prefix=pre1+'_'+pre2
         else:
             prefix = pre1 + '_' + pre2
-        pro = self.pro_dict[cur][prefix] * 1.0 / self.prefix_dict[prefix]
+        if self.prefix_dict.has_key(prefix):
+            return self.prefix_dict[prefix]
+        else:
+            count=0
+            sum=0
+            for(k,v) in self.pro_dict.items():
+                if v.has_key(pre2):
+                    count+=1
+                    sum+=v[pre2]
+            if sum==0:
+                if self.pro_dict.has_key(pre1):
+                    for (k,v) in self.pro_dict[pre1].items():
+                        sum+=v
+                else:
+                    sum=100000
+            sum+=0.1*count
+            return sum
+
+    def get_pro(self, cur, pre1, pre2):
+        three_token_count=self.get_tree_token_count(cur,pre1,pre2)
+        pre_token_count=self.get_pre_count(pre1,pre2)
+        pre_token_count=float(pre_token_count)
+        three_token_count=float(three_token_count)
+
+        # print 'pre_count '+pre_token_count.__str__()
+        # print 'three_count '+three_token_count.__str__()
+        pro=three_token_count*1.0/(pre_token_count*1.0)
+        # print pro
+
         return pro
 
 
