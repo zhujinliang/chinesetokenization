@@ -80,8 +80,16 @@ class Segment:
                     #     find_word=False
                     i+=1
                     j=i+2
+                    if j>=num-2:
+                        break
                 else:
-                    j+=1
+                    if j<=num-2:
+                        j+=1
+                    else:
+                        i+=1
+                        j=i+2
+                        if j>=num-2:
+                            break
 
         root=self.temp_node_list[0]
         root.current_token='s'
