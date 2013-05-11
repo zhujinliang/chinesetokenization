@@ -13,13 +13,15 @@ class ProDict(object):
         self.train_file = train_file
         self.pro_dict = self._get_pro_dict()
         self.prefix_dict = self._get_prefix_dict()
+        self.longest_length=self.get_longest_length_of_vocable()
 
     def has_vocable(self, vocable):
         if vocable in self.pro_dict:
             return True
         else:
             return False
-
+    def get_longest_length(self):
+        return self.longest_length
     def get_longest_length_of_vocable(self):
         length = 0
         for k in self.pro_dict:
@@ -37,8 +39,6 @@ class ProDict(object):
             pre2='s_e'
             prefix=pre1+'_'+pre2
         else:
-            if pre1 is None:
-                pass
             prefix = pre1 + '_' + pre2
         if self.pro_dict.has_key(cur):
             if self.pro_dict[cur].has_key(prefix):

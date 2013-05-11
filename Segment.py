@@ -4,24 +4,35 @@ __author__ = 'zdj'
 from Node import *
 from pro_dict import *
 import re
+import datetime
+
 class Segment:
     def __init__(self):
-        self.node_list={}   #The nodes has been segment
-        self.sentences=[]   #shor sentences
+        self.node_list={}       #The nodes has been segment
+        self.sentences=[]       #shor sentences
         self.current_index=0
         self.temp_node_list=[]
         self.pro_dictionary=None
         self.graph_nodes_list=[]
 
     def cut_into_short_sentence(self,input_stc):
-        num=len(input_stc)
-        start=0
         re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
 
         line=unicode(input_stc,'utf-8')
         line=line.strip()
         self.sentences=re_biaodian.split(line)
+        for sen in self.sentences:
+            if sen is u'':
+                self.sentences.remove(sen)
+    def create_new_connected_node(self,word,pre_node,next_node):
+        node=Node(word,None)
 
+        pre_node.add_next_node(node)
+        node.add_pre_node(pre_node)
+
+        next_node.add_pre_node(node)
+        node.add_next_node(next_node)
+        return node
     def construct_token_graph(self,short_sentence):
         # short_sentence is not start with  's' and end with 'e'
         num=len(short_sentence)
@@ -34,29 +45,18 @@ class Segment:
             self.temp_node_list.append(node)
         for i in range(0,num-1,1):
             word=short_sentence[i]
-            node=Node(word,None)
-            self.temp_node_list[i].add_next_node(node)
-            node.add_pre_node(self.temp_node_list[i])
-            self.temp_node_list[i+1].add_pre_node(node)
-            node.add_next_node(self.temp_node_list[i+1])
+            node=self.create_new_connected_node(word,self.temp_node_list[i],self.temp_node_list[i+1])
             self.graph_nodes_list.append(node)
         i=0
         j=i+2
-        find_word=False
+
         while i<num-1:
             word=short_sentence[i:j]
 
             if self.pro_dictionary.has_vocable(word):
                 print 'In Dictionary: '+i.__str__()+' '+j.__str__()+' '+word
-                #  word is in the dictionary create the node, and add the connected
-                node=Node(word,None)
-                self.temp_node_list[i].add_next_node(node)
-                node.add_pre_node(self.temp_node_list[i])
-                self.temp_node_list[j].add_pre_node(node)
-                node.add_next_node(self.temp_node_list[j])
+                node=self.create_new_connected_node(word,self.temp_node_list[i],self.temp_node_list[j])
                 self.graph_nodes_list.append(node)
-                # find_word=True
-
                 if j<=num-2:
                     j+=1
                 else:
@@ -64,20 +64,9 @@ class Segment:
                     j=i+2
                     if j>=num-2:
                         break
-                    # find_word=False
             else:
                 #word is not in the dictionary go to the next word
-                if j>=num-2 or j-i==self.pro_dictionary.get_longest_length_of_vocable():
-                    # if not find_word:
-                    #     print i.__str__()+' '+short_sentence[i]
-                    #     node=Node(short_sentence[i],None)
-                    #     self.temp_node_list[i].add_next_node(node)
-                    #     node.add_pre_node(self.temp_node_list[i])
-                    #     self.temp_node_list[i+1].add_pre_node(node)
-                    #     node.add_next_node(self.temp_node_list[i+1])
-                    #     self.graph_nodes_list.append(node)
-                    # else:
-                    #     find_word=False
+                if j>=num-2 or j-i==self.pro_dictionary.get_longest_length():
                     i+=1
                     j=i+2
                     if j>=num-2:
@@ -102,8 +91,6 @@ class Segment:
         return root, end
 
     def connect_token_node(self,current_node):
-        # n=len(current_node.next_nodes)
-        # new_next_nodes=[]
         for pre_node in current_node.pre_nodes:
             pre_node.next_nodes=current_node.next_nodes[:]
         if len(current_node.next_nodes) is 1 and current_node.next_nodes[0].current_token is 'e':
@@ -186,8 +173,9 @@ class Segment:
         if len(root.next_nodes)==0:
             return
         for child_node in root.next_nodes:
-            child_node.set_best_pre_node(self.pro_dictionary)
-            self.find_max_path(child_node)
+            child_node.set_best_pre_node(self.pro_dictionary,root)
+            if child_node.hasPass:
+                self.find_max_path(child_node)
 
     result_token=[]
     def final_token_path(self,node):
@@ -205,21 +193,29 @@ class Segment:
         for sentence in sentences:
             self.cut_into_short_sentence(sentence)
             for short_sentence in self.sentences:
+                stattime1=datetime.datetime.now()
                 root, end=self.construct_token_graph(short_sentence)
+                starttime2=datetime.datetime.now()
                 self.construct_three_token_graph_phase_1(root)
+                starttime3=datetime.datetime.now()
                 self.construct_three_token_graph_phase_2(root)
+                starttime4=datetime.datetime.now()
                 root.max_probability=1
                 self.find_max_path(root)
+                datetime5=datetime.datetime.now()
                 self.result_token=[]
                 self.final_token_path(end)
+                starttime6=datetime.datetime.now()
                 self.result_token.reverse()
-
+                print 'construct_token_graph time:          '+(starttime2-stattime1).microseconds.__str__()
+                print 'construct_three_token_graph_phase_1: '+(starttime3-starttime2).microseconds.__str__()
+                print 'construct_three_token_graph_phase_2: '+(starttime4-starttime3).microseconds.__str__()
+                print 'find_max_path:                       '+(datetime5-starttime4).microseconds.__str__()
+                print 'final_token_path:                    '+(starttime6-datetime5).microseconds.__str__()
                 print u'/'.join(self.result_token)
 
 if __name__=='__main__':
-    import sys
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+
     input_file=open('input_sentence.txt')
     sens=input_file.readlines()
     print sens[0]
