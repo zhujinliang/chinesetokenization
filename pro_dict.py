@@ -13,21 +13,24 @@ class ProDict(object):
         self.train_file = train_file
         self.pro_dict = self._get_pro_dict()
         self.prefix_dict = self._get_prefix_dict()
-        self.longest_length=self.get_longest_length_of_vocable()
+        self.longest_length = self.get_longest_length_of_vocable()
 
     def has_vocable(self, vocable):
         if vocable in self.pro_dict:
             return True
         else:
             return False
+
     def get_longest_length(self):
         return self.longest_length
+
     def get_longest_length_of_vocable(self):
         length = 0
         for k in self.pro_dict:
             if len(k) > length:
                 length = len(k)
         return length
+
     def get_tree_token_count(self,cur,pre1,pre2):
         # print cur
         # print pre1
@@ -35,9 +38,9 @@ class ProDict(object):
 
         if pre2 is None:
             prefix = 's_e'
-        elif pre2=='s':
-            pre2='s_e'
-            prefix=pre1+'_'+pre2
+        elif pre2 == 's':
+            pre2 = 's_e'
+            prefix = pre1 + '_' + pre2
         else:
             prefix = pre1 + '_' + pre2
         if self.pro_dict.has_key(cur):
@@ -47,41 +50,42 @@ class ProDict(object):
                 return 0.1
         else:
             return 0.1
+
     def get_pre_count(self,pre1,pre2):
         if pre2 is None:
             prefix = 's_e'
-        elif pre2=='s':
-            pre2='s_e'
-            prefix=pre1+'_'+pre2
+        elif pre2 == 's':
+            pre2 = 's_e'
+            prefix = pre1 + '_' + pre2
         else:
             prefix = pre1 + '_' + pre2
         if self.prefix_dict.has_key(prefix):
             return self.prefix_dict[prefix]
         else:
-            count=0
-            sum=0
+            count = 0
+            amount = 0
             for(k,v) in self.pro_dict.items():
                 if v.has_key(pre2):
-                    count+=1
-                    sum+=v[pre2]
-            if sum==0:
+                    count += 1
+                    amount += v[pre2]
+            if amount == 0:
                 if self.pro_dict.has_key(pre1):
                     for (k,v) in self.pro_dict[pre1].items():
-                        sum+=v
+                        amount += v
                 else:
-                    sum=100000
-            sum+=0.1*count
-            return sum
+                    amount = 100000
+            amount += 0.1 * count
+            return amount
 
     def get_pro(self, cur, pre1, pre2):
-        three_token_count=self.get_tree_token_count(cur,pre1,pre2)
-        pre_token_count=self.get_pre_count(pre1,pre2)
-        pre_token_count=float(pre_token_count)
-        three_token_count=float(three_token_count)
+        three_token_count = self.get_tree_token_count(cur,pre1,pre2)
+        pre_token_count = self.get_pre_count(pre1,pre2)
+        pre_token_count = float(pre_token_count)
+        three_token_count = float(three_token_count)
 
         # print 'pre_count '+pre_token_count.__str__()
         # print 'three_count '+three_token_count.__str__()
-        pro=three_token_count*1.0/(pre_token_count*1.0)
+        pro = three_token_count * 1.0 / (pre_token_count * 1.0)
         # print pro
 
         return pro
@@ -89,7 +93,7 @@ class ProDict(object):
 
     def _get_short_sen(self):
         # short_sen contains many small sentences string in list.
-        short_sen= []
+        short_sen = []
         short_sen_file_name = 'short_sen.txt'
         if not os.path.exists(short_sen_file_name):
             f = open(self.train_file)
