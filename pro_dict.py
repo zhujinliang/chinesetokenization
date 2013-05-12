@@ -9,7 +9,7 @@ class ProDict(object):
     ''' Get train set for tokenization. '''
     dict_file = ''
 
-    def __init__(self, train_file):
+    def __init__(self, train_file=None):
         self.train_file = train_file
         self.pro_dict = self._get_pro_dict()
         self.prefix_dict = self._get_prefix_dict()
@@ -94,58 +94,61 @@ class ProDict(object):
     def _get_short_sen(self):
         # short_sen contains many small sentences string in list.
         short_sen = []
-        short_sen_file_name = 'short_sen.txt'
-        if not os.path.exists(short_sen_file_name):
-            f = open(self.train_file)
-            lines = f.readlines()
-            f.close()
-            re_han = re.compile(ur'([\u4E00-\u9FA5]+)')
-            re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
-            for line in lines:
-                # Use unicode encode
-                line = unicode(line, 'utf-8')
-                sentences = re_biaodian.split(line.strip(' '))
-                for s in sentences:
-                    if not s in ('', ' ', '  ', '\n', ' \n', '  \n'):
-                        if s.startswith('  '):
-                            s = 's' + s
-                        else:
-                            s = 's  ' + s
-                        if s.endswith('\n'):
-                            s = s[0:-1] + 'e'
-                        if s.endswith('  '):
-                            s = s + 'e'
-                        else:
-                            s = s + '  e'
-                        short_sen.append(s)
-            short_sen_file = open(short_sen_file_name, 'w')
-            cPickle.dump(short_sen, short_sen_file)
-        else:
-            short_sen_file = open(short_sen_file_name, 'r')
-            short_sen = cPickle.load(short_sen_file)
-        short_sen_file.close()
+        
+        f = open(self.train_file)
+        lines = f.readlines()
+        f.close()
+        re_han = re.compile(ur'([\u4E00-\u9FA5]+)')
+        re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
+        for line in lines:
+            # Use unicode encode
+            line = unicode(line, 'utf-8')
+            sentences = re_biaodian.split(line.strip(' '))
+            for s in sentences:
+                if not s in ('', ' ', '  ', '\n', ' \n', '  \n'):
+                    if s.startswith('  '):
+                        s = 's' + s
+                    else:
+                        s = 's  ' + s
+                    if s.endswith('\n'):
+                        s = s[0:-1] + 'e'
+                    if s.endswith('  '):
+                        s = s + 'e'
+                    else:
+                        s = s + '  e'
+                    short_sen.append(s)
         return short_sen
 
     def _get_sen_words(self):
         sen_words = []
         sen_words_file_name = 'sen_words.txt'
+        short_sen = self._get_short_sen()
+        for s in short_sen:
+            words = s.split('  ')
+            sen_words.append(words)
         if not os.path.exists(sen_words_file_name):
-            short_sen = self._get_short_sen()
-            for s in short_sen:
-                words = s.split('  ')
-                sen_words.append(words)
             sen_words_file = open(sen_words_file_name, 'w')
-            cPickle.dump(sen_words, sen_words_file)
         else:
             sen_words_file = open(sen_words_file_name, 'r')
-            sen_words = cPickle.load(sen_words_file)
+            old_sen_words = cPickle.load(sen_words_file)
+            sen_words_file.close()
+            sen_words.extend(old_sen_words)
+            sen_words_file = open(sen_words_file_name, 'w')
+        cPickle.dump(sen_words, sen_words_file)
         sen_words_file.close()
         return sen_words
 
     def _get_pro_dict(self):
         pro_dict = {}
         pro_dict_file_name = 'pro_dict.txt'
-        if not os.path.exists(pro_dict_file_name):
+        if self.train_file is None:
+            if os.path.exists(pro_dict_file_name):
+                pro_dict_file = open(pro_dict_file_name, 'r')
+                pro_dict = cPickle.load(pro_dict_file)
+            else:
+                print 'Not found the pro_dict.txt'
+                return None
+        else:
             sen_words = self._get_sen_words()
             for s in sen_words:
                 for w in s:
@@ -162,9 +165,6 @@ class ProDict(object):
                         pro_dict[w] = {key: 1}
             pro_dict_file = open(pro_dict_file_name, 'w')
             cPickle.dump(pro_dict, pro_dict_file)
-        else:
-            pro_dict_file = open(pro_dict_file_name, 'r')
-            pro_dict = cPickle.load(pro_dict_file)
         pro_dict_file.close()
         return pro_dict
 
@@ -183,7 +183,7 @@ class ProDict(object):
 
 if __name__ == '__main__':
     d = ProDict('train_seg.txt')
-    print u'训练集中最长词语长度：', d.get_longest_length_of_vocable()
+    print u'训练集中最长词语长度：', d.longest_length
     import sys
     args = len(sys.argv)
     if 2 < args < 5:

@@ -15,7 +15,7 @@ def interactive_mode():
             flag = False
         else:
             seg = Segment()
-            pro_dic = ProDict('train_seg.txt')
+            pro_dic = ProDict()
             seg.pro_dictionary = pro_dic
             seg.segment(sen)
     sys.exit()
@@ -28,13 +28,14 @@ Usage of segment_sentences:
 python segment_sentences.py [options] [arg]
 Options and arguments:
 -i, --interactive    go into interactive mode
--f, --file [file_name] segment sentences from the specified file
+-f, --file [filename] segment sentences from the specified file
+-t, --train [filename] use the train set to train the algorithm
 -h, --help           display this help info and exit
 -v, --version        output version info and exit
 '''
     version_info = 'Version 1.0'
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hif:v', ['help', 'interactive', 'file', 'version'])
+        opts, args = getopt.getopt(sys.argv[1:], 'hif:t:v', ['help', 'interactive', 'file', 'train', 'version'])
     except getopt.GetoptError as err:
         print usage
         sys.exit(2)
@@ -50,9 +51,13 @@ Options and arguments:
             input_file = open(a)
             sens = input_file.readlines()
             seg = Segment()
-            pro_dic = ProDict('train_seg.txt')
+            pro_dic = ProDict()
             seg.pro_dictionary = pro_dic
             seg.segment(sens)
+        elif o in ('-t', '--train'):
+            train_file = a
+            ProDict(train_file)
+            print 'Train successfully!'
         else:
             print usage
             sys.exit()
