@@ -9,15 +9,17 @@ from pro_dict import ProDict
 
 def interactive_mode():
     flag = True
+    seg = Segment()
+    pro_dic = ProDict()
+    seg.pro_dictionary = pro_dic
     while flag:
-        sen = raw_input('seg_sentence>>')
-        if sen == 'q':
+        sen = raw_input('seg_sentence >>')
+        if sen.lower() in ('q', 'quit', 'e','exit'):
+            print 'Exit...'
             flag = False
         else:
-            seg = Segment()
-            pro_dic = ProDict()
-            seg.pro_dictionary = pro_dic
-            seg.segment(sen)
+            s = unicode(sen, 'utf-8')
+            seg.segment([s.encode('utf-8'),])
     sys.exit()
 
 
@@ -46,6 +48,7 @@ Options and arguments:
             print usage
         elif o in ('-i', '--interactive'):
             print 'Interactive Mode'
+            print 'Input q, Q, e, E to exit.'
             interactive_mode()
         elif o in ('-f', '--file'):
             input_file = open(a)
