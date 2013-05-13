@@ -179,6 +179,10 @@ class ProDict(object):
 
 if __name__ == '__main__':
     d = ProDict('train_seg.txt')
+    word=u'完整'
+    if d.has_vocable(word):
+        print 'Find'
+
     print u'训练集中最长词语长度：', d.get_longest_length_of_vocable()
     import sys
     args = len(sys.argv)

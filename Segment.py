@@ -33,6 +33,7 @@ class Segment:
         next_node.add_pre_node(node)
         node.add_next_node(next_node)
         return node
+
     def construct_token_graph(self,short_sentence):
         # short_sentence is not start with  's' and end with 'e'
         num=len(short_sentence)
@@ -57,27 +58,28 @@ class Segment:
                 print 'In Dictionary: '+i.__str__()+' '+j.__str__()+' '+word
                 node=self.create_new_connected_node(word,self.temp_node_list[i],self.temp_node_list[j])
                 self.graph_nodes_list.append(node)
-                if j<=num-2:
+                if j<num-1:
                     j+=1
                 else:
                     i+=1
                     j=i+2
-                    if j>=num-2:
+                    if j>=num-1:
                         break
             else:
                 #word is not in the dictionary go to the next word
-                if j>=num-2 or j-i==self.pro_dictionary.get_longest_length():
+                if j>=num-1 or j-i>=self.pro_dictionary.get_longest_length():#j is at the end of the sentence
                     i+=1
                     j=i+2
-                    if j>=num-2:
+                    if j>num-1:
                         break
                 else:
-                    if j<=num-2:
+                    if j<num-1:
                         j+=1
                     else:
+                        # when the i point to the last character of the sentence break
                         i+=1
                         j=i+2
-                        if j>=num-2:
+                        if j>num-1:
                             break
 
         root=self.temp_node_list[0]
@@ -188,9 +190,42 @@ class Segment:
             self.result_token.append(node.current_token)
             node=node.best_pre_node
             self.final_token_path(node)
+    def scane_sentence_for_result(self,tokens,sentence):
+        sentence=unicode(sentence,'utf-8')
+        sentence=sentence.strip()
+        startindex=0
+        re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
+        n=len(tokens)
+        i=0
+        while i<len(tokens):
+            l=len(tokens[i])
+            word=sentence[startindex:startindex+l]
+            if word==u'，':
+                pass
+            if tokens[i]==u'如果':
+                pass
+            if not word==tokens[i]:
+                if re_biaodian.match(sentence[startindex]):
+                    tokens.insert(i,sentence[startindex])
+                    n=len(tokens)
+                else:
+                    print'Error not match character'
+                startindex+=1
+            else:
+                startindex+=l
+            i+=1
+        n=len(sentence)
+        if startindex<n:
+            word=sentence[startindex:n]
+            tokens.append(word)
+
+
+        return tokens
 
     def segment(self,sentences):
+        seg_sentence=[]
         for sentence in sentences:
+            tokens=[]
             self.cut_into_short_sentence(sentence)
             for short_sentence in self.sentences:
                 stattime1=datetime.datetime.now()
@@ -207,12 +242,17 @@ class Segment:
                 self.final_token_path(end)
                 starttime6=datetime.datetime.now()
                 self.result_token.reverse()
-                print 'construct_token_graph time:          '+(starttime2-stattime1).microseconds.__str__()
+                tokens.__iadd__(self.result_token)
+                print 'construct_token_graph time:          '+(starttime2 - stattime1).microseconds.__str__()
                 print 'construct_three_token_graph_phase_1: '+(starttime3-starttime2).microseconds.__str__()
                 print 'construct_three_token_graph_phase_2: '+(starttime4-starttime3).microseconds.__str__()
                 print 'find_max_path:                       '+(datetime5-starttime4).microseconds.__str__()
                 print 'final_token_path:                    '+(starttime6-datetime5).microseconds.__str__()
                 print u'/'.join(self.result_token)
+            tokens=self.scane_sentence_for_result(tokens,sentence)
+            print  u' '.join(tokens)
+            seg_sentence.append(tokens)
+
 
 if __name__=='__main__':
 

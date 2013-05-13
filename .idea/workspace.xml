@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Node.py" afterPath="$PROJECT_DIR$/Node.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segment.py" afterPath="$PROJECT_DIR$/Segment.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input_sentence.txt" afterPath="$PROJECT_DIR$/input_sentence.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pro_dict.py" afterPath="$PROJECT_DIR$/pro_dict.py" />
@@ -10,12 +9,12 @@
     </list>
     <ignored path="chinesetokenization.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368240239930" ignored="false" />
-    <file path="/Segment.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368291966077" ignored="false" />
+    <file path="/Dummy.txt" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368366013185" ignored="false" />
+    <file path="/Segment.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368377218606" ignored="false" />
     <file path="/Node.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368292143013" ignored="false" />
     <file path="$PROJECT_DIR$/../translate/rating_statistic_vector.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1367336739332" ignored="false" />
     <file path="/rating_statistic_vector.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1367336738289" ignored="false" />
-    <file path="/pro_dict.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368258172047" ignored="false" />
+    <file path="/pro_dict.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368372662036" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +34,7 @@
       <file leaf-file-name="Segment.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Segment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="175" column="34" selection-start="6265" selection-end="6265" vertical-scroll-proportion="0.0">
+            <state line="35" column="0" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#61#79#0" expanded="true" />
               </folding>
@@ -73,16 +72,16 @@
       <file leaf-file-name="train_seg.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train_seg.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="759" column="90" selection-start="69298" selection-end="69298" vertical-scroll-proportion="0.0">
+            <state line="5766" column="132" selection-start="499353" selection-end="499355" vertical-scroll-proportion="-3.1612904">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Node.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="44" selection-start="1315" selection-end="1315" vertical-scroll-proportion="0.8412256">
+            <state line="16" column="0" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -106,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pro_dict.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="pro_dict.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pro_dict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="37" selection-start="614" selection-end="643" vertical-scroll-proportion="0.0">
+            <state line="190" column="44" selection-start="6308" selection-end="6308" vertical-scroll-proportion="0.42477876">
               <folding />
             </state>
           </provider>
@@ -133,17 +132,17 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/Node.py" />
         <option value="$PROJECT_DIR$/pro_dict.py" />
         <option value="$PROJECT_DIR$/Segment.py" />
-        <option value="$PROJECT_DIR$/Node.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-5" />
-    <option name="width" value="1303" />
-    <option name="height" value="774" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -171,6 +170,20 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="chinesetokenization">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -187,20 +200,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="chinesetokenization" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="chinesetokenization">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -238,7 +237,9 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pro_dict.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -356,18 +357,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-5" width="1303" height="774" extended-state="6" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30535573" sideWeight="0.6709887" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31705365" sideWeight="0.6712095" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39693356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32901135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -435,26 +436,26 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>206</line>
-          <option name="timeStamp" value="27" />
+          <line>251</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>202</line>
-          <option name="timeStamp" value="28" />
+          <line>216</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="33" />
+          <line>205</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>196</line>
-          <option name="timeStamp" value="40" />
+          <line>203</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="45" />
+      <option name="time" value="56" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -521,23 +522,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_seg.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="759" column="90" selection-start="69298" selection-end="69298" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python2.7/re.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="189" column="0" selection-start="8981" selection-end="8981" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pro_dict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="37" selection-start="614" selection-end="643" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -556,18 +543,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="0" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_seg.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5766" column="132" selection-start="499353" selection-end="499355" vertical-scroll-proportion="-3.1612904">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Segment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="34" selection-start="6265" selection-end="6265" vertical-scroll-proportion="0.0">
+        <state line="35" column="0" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#61#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Node.py">
+    <entry file="file://$PROJECT_DIR$/pro_dict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="44" selection-start="1315" selection-end="1315" vertical-scroll-proportion="0.8412256">
+        <state line="190" column="44" selection-start="6308" selection-end="6308" vertical-scroll-proportion="0.42477876">
           <folding />
         </state>
       </provider>
