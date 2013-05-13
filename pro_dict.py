@@ -9,25 +9,28 @@ class ProDict(object):
     ''' Get train set for tokenization. '''
     dict_file = ''
 
-    def __init__(self, train_file):
+    def __init__(self, train_file=None):
         self.train_file = train_file
         self.pro_dict = self._get_pro_dict()
         self.prefix_dict = self._get_prefix_dict()
-        self.longest_length=self.get_longest_length_of_vocable()
+        self.longest_length = self.get_longest_length_of_vocable()
 
     def has_vocable(self, vocable):
         if vocable in self.pro_dict:
             return True
         else:
             return False
+
     def get_longest_length(self):
         return self.longest_length
+
     def get_longest_length_of_vocable(self):
         length = 0
         for k in self.pro_dict:
             if len(k) > length:
                 length = len(k)
         return length
+
     def get_tree_token_count(self,cur,pre1,pre2):
         # print cur
         # print pre1
@@ -35,9 +38,9 @@ class ProDict(object):
 
         if pre2 is None:
             prefix = 's_e'
-        elif pre2=='s':
-            pre2='s_e'
-            prefix=pre1+'_'+pre2
+        elif pre2 == 's':
+            pre2 = 's_e'
+            prefix = pre1 + '_' + pre2
         else:
             prefix = pre1 + '_' + pre2
         if self.pro_dict.has_key(cur):
@@ -47,41 +50,42 @@ class ProDict(object):
                 return 0.1
         else:
             return 0.1
+
     def get_pre_count(self,pre1,pre2):
         if pre2 is None:
             prefix = 's_e'
-        elif pre2=='s':
-            pre2='s_e'
-            prefix=pre1+'_'+pre2
+        elif pre2 == 's':
+            pre2 = 's_e'
+            prefix = pre1 + '_' + pre2
         else:
             prefix = pre1 + '_' + pre2
         if self.prefix_dict.has_key(prefix):
             return self.prefix_dict[prefix]
         else:
-            count=0
-            sum=0
+            count = 0
+            amount = 0
             for(k,v) in self.pro_dict.items():
                 if v.has_key(pre2):
-                    count+=1
-                    sum+=v[pre2]
-            if sum==0:
+                    count += 1
+                    amount += v[pre2]
+            if amount == 0:
                 if self.pro_dict.has_key(pre1):
                     for (k,v) in self.pro_dict[pre1].items():
-                        sum+=v
+                        amount += v
                 else:
-                    sum=100000
-            sum+=0.1*count
-            return sum
+                    amount = 100000
+            amount += 0.1 * count
+            return amount
 
     def get_pro(self, cur, pre1, pre2):
-        three_token_count=self.get_tree_token_count(cur,pre1,pre2)
-        pre_token_count=self.get_pre_count(pre1,pre2)
-        pre_token_count=float(pre_token_count)
-        three_token_count=float(three_token_count)
+        three_token_count = self.get_tree_token_count(cur,pre1,pre2)
+        pre_token_count = self.get_pre_count(pre1,pre2)
+        pre_token_count = float(pre_token_count)
+        three_token_count = float(three_token_count)
 
         # print 'pre_count '+pre_token_count.__str__()
         # print 'three_count '+three_token_count.__str__()
-        pro=three_token_count*1.0/(pre_token_count*1.0)
+        pro = three_token_count * 1.0 / (pre_token_count * 1.0)
         # print pro
 
         return pro
@@ -89,59 +93,62 @@ class ProDict(object):
 
     def _get_short_sen(self):
         # short_sen contains many small sentences string in list.
-        short_sen= []
-        short_sen_file_name = 'short_sen.txt'
-        if not os.path.exists(short_sen_file_name):
-            f = open(self.train_file)
-            lines = f.readlines()
-            f.close()
-            re_han = re.compile(ur'([\u4E00-\u9FA5]+)')
-            re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
-            for line in lines:
-                # Use unicode encode
-                line = unicode(line, 'utf-8')
-                sentences = re_biaodian.split(line.strip(' '))
-                for s in sentences:
-                    if not s in ('', ' ', '  ', '\n', ' \n', '  \n'):
-                        if s.startswith('  '):
-                            s = 's' + s
-                        else:
-                            s = 's  ' + s
-                        if s.endswith('\n'):
-                            s = s[0:-1] + 'e'
-                        if s.endswith('  '):
-                            s = s + 'e'
-                        else:
-                            s = s + '  e'
-                        short_sen.append(s)
-            short_sen_file = open(short_sen_file_name, 'w')
-            cPickle.dump(short_sen, short_sen_file)
-        else:
-            short_sen_file = open(short_sen_file_name, 'r')
-            short_sen = cPickle.load(short_sen_file)
-        short_sen_file.close()
+        short_sen = []
+        
+        f = open(self.train_file)
+        lines = f.readlines()
+        f.close()
+        re_han = re.compile(ur'([\u4E00-\u9FA5]+)')
+        re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
+        for line in lines:
+            # Use unicode encode
+            line = unicode(line, 'utf-8')
+            sentences = re_biaodian.split(line.strip(' '))
+            for s in sentences:
+                if not s in ('', ' ', '  ', '\n', ' \n', '  \n'):
+                    if s.startswith('  '):
+                        s = 's' + s
+                    else:
+                        s = 's  ' + s
+                    if s.endswith('\n'):
+                        s = s[0:-1] + 'e'
+                    if s.endswith('  '):
+                        s = s + 'e'
+                    else:
+                        s = s + '  e'
+                    short_sen.append(s)
         return short_sen
 
     def _get_sen_words(self):
         sen_words = []
         sen_words_file_name = 'sen_words.txt'
+        short_sen = self._get_short_sen()
+        for s in short_sen:
+            words = s.split('  ')
+            sen_words.append(words)
         if not os.path.exists(sen_words_file_name):
-            short_sen = self._get_short_sen()
-            for s in short_sen:
-                words = s.split('  ')
-                sen_words.append(words)
             sen_words_file = open(sen_words_file_name, 'w')
-            cPickle.dump(sen_words, sen_words_file)
         else:
             sen_words_file = open(sen_words_file_name, 'r')
-            sen_words = cPickle.load(sen_words_file)
+            old_sen_words = cPickle.load(sen_words_file)
+            sen_words_file.close()
+            sen_words.extend(old_sen_words)
+            sen_words_file = open(sen_words_file_name, 'w')
+        cPickle.dump(sen_words, sen_words_file)
         sen_words_file.close()
         return sen_words
 
     def _get_pro_dict(self):
         pro_dict = {}
         pro_dict_file_name = 'pro_dict.txt'
-        if not os.path.exists(pro_dict_file_name):
+        if self.train_file is None:
+            if os.path.exists(pro_dict_file_name):
+                pro_dict_file = open(pro_dict_file_name, 'r')
+                pro_dict = cPickle.load(pro_dict_file)
+            else:
+                print 'Not found the pro_dict.txt'
+                return None
+        else:
             sen_words = self._get_sen_words()
             for s in sen_words:
                 for w in s:
@@ -158,9 +165,6 @@ class ProDict(object):
                         pro_dict[w] = {key: 1}
             pro_dict_file = open(pro_dict_file_name, 'w')
             cPickle.dump(pro_dict, pro_dict_file)
-        else:
-            pro_dict_file = open(pro_dict_file_name, 'r')
-            pro_dict = cPickle.load(pro_dict_file)
         pro_dict_file.close()
         return pro_dict
 
@@ -179,11 +183,7 @@ class ProDict(object):
 
 if __name__ == '__main__':
     d = ProDict('train_seg.txt')
-    word=u'完整'
-    if d.has_vocable(word):
-        print 'Find'
-
-    print u'训练集中最长词语长度：', d.get_longest_length_of_vocable()
+    print u'训练集中最长词语长度：', d.longest_length
     import sys
     args = len(sys.argv)
     if 2 < args < 5:
