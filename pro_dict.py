@@ -112,7 +112,7 @@ class ProDict(object):
                         s = 's  ' + s
                     if s.endswith('\n'):
                         s = s[0:-1] + 'e'
-                    if s.endswith('  '):
+                    elif s.endswith('  '):
                         s = s + 'e'
                     else:
                         s = s + '  e'
@@ -123,9 +123,13 @@ class ProDict(object):
         sen_words = []
         sen_words_file_name = 'sen_words.txt'
         short_sen = self._get_short_sen()
+        #buf = open('words.txt', 'w')
         for s in short_sen:
             words = s.split('  ')
             sen_words.append(words)
+        #    for w in words:
+        #        buf.write(w.encode('utf-8') + '\n')
+        #buf.close()
         if not os.path.exists(sen_words_file_name):
             sen_words_file = open(sen_words_file_name, 'w')
         else:
@@ -165,6 +169,12 @@ class ProDict(object):
                         pro_dict[w] = {key: 1}
             pro_dict_file = open(pro_dict_file_name, 'w')
             cPickle.dump(pro_dict, pro_dict_file)
+
+        buf = open('keys.txt', 'w')
+        for k in pro_dict:
+            buf.write(k.encode('utf-8') + '\n')
+        buf.close()
+
         pro_dict_file.close()
         return pro_dict
 
