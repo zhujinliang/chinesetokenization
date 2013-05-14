@@ -49,7 +49,7 @@ Options and arguments:
 -v, --version          output version info and exit
 '''
     paser = OptionParser(usage)
-    paser.version = 'Version.1.0'
+    paser.version = 'Version 0.1'
     paser.add_option('-d', '--debug', action='store_true', dest='debug',
                      help='print the debug information of the segmentation, default is not')
     paser.add_option('-f', '--file', action='store', dest='file',
@@ -64,51 +64,51 @@ Options and arguments:
                      help='use the training set to train the algorithm')
     paser.add_option('-v', '--version', action='store_true', dest='version',
                      help='output version info and exit')
+    seg = Segment()
+
     operation, arg = paser.parse_args(sys.argv)
-    if operation.debug:
-        print 'Debug: ', operation.debug
-    if operation.interactive:
-        print 'Interactive: ', operation.interactive
-    if operation.file:
-        print 'Input from file: ', operation.file
     if operation.version:
         print 'Version info: ', operation.version
-    if operation.train:
-        print 'Train the algorithm: ', operation.train
+        print paser.version
+    if operation.debug:
+        print 'Debug: ', operation.debug
+        seg.debug = True
     if operation.separator:
         print 'Specify the separator: ', operation.separator
+        seg.separator = operation.separator
     if operation.out:
         print 'Save the output to file: ', operation.out
-    pro_dic = None
-    seg = Segment()
+    if operation.interactive:
+        print 'Interactive Mode:'
+    if operation.file:
+        print 'Sentences input from file: ', operation.file
     if operation.train:
-        train_set=open(operation.train)
-        pro_dic=ProDict(train_set)
-    else:
-        pro_dic=ProDict()
-    seg.pro_dictionary = pro_dic
-    if operation.debug:
-        seg.debug=True
+        print 'Train from file: ', operation.train
+    if operation.train:
+        pro_dic = ProDict(operation.train)
+        print 'Train the algorithm successfully!'
+    elif operation.interactive or operation.file:
+        pro_dic = ProDict()
+        seg.pro_dictionary = pro_dic
     if operation.interactive:
         interactive_mode(seg, operation)
-    else:
-        if operation.file:
-            print 'Read the input file...'
-            input_file = open(operation.file)
-            sens = input_file.readlines()
-            input_file.close()
-            print 'Start segment the input lines'
-            results = seg.segment(sens)
+    elif operation.file:
+        print 'Read the input file...'
+        input_file = open(operation.file)
+        sens = input_file.readlines()
+        input_file.close()
+        print 'Start segment the input lines'
+        results = seg.segment(sens)
+        for result in results:
+            print result
+        #  write the result to the specified file
+        print results
+        if operation.out:
+            write_result = open(operation.out, 'w')
             for result in results:
-                print result
-            #  write the result to the specified file
-            print results
-            if operation.out:
-                write_result = open(operation.out, 'w')
-                for result in results:
-                    result = result.encode('utf-8')
-                    write_result.write(result)
-                write_result.close()
+                result = result.encode('utf-8')
+                write_result.write(result)
+            write_result.close()
 
 if __name__ == '__main__':
     segment_sentences()
