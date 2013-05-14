@@ -11,6 +11,7 @@ from optparse import OptionParser
 def interactive_mode(seg, operation):
     flag = True
     output = None
+    print 'Input q, quit, Q, e, exit, E to exit.'
     if operation.out:
         output = open(operation.out, 'w')
     while flag:
@@ -64,13 +65,20 @@ Options and arguments:
     paser.add_option('-v', '--version', action='store_true', dest='version',
                      help='output version info and exit')
     operation, arg = paser.parse_args(sys.argv)
-    print operation.debug
-    print operation.interactive
-    print operation.file
-    print operation.version
-    print operation.train
-    print operation.separator
-    print operation.out
+    if operation.debug:
+        print 'Debug: ', operation.debug
+    if operation.interactive:
+        print 'Interactive: ', operation.interactive
+    if operation.file:
+        print 'Input from file: ', operation.file
+    if operation.version:
+        print 'Version info: ', operation.version
+    if operation.train:
+        print 'Train the algorithm: ', operation.train
+    if operation.separator:
+        print 'Specify the separator: ', operation.separator
+    if operation.out:
+        print 'Save the output to file: ', operation.out
     pro_dic = None
     seg = Segment()
     if operation.train:
