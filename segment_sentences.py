@@ -68,7 +68,7 @@ Options and arguments:
 
     operation, arg = paser.parse_args(sys.argv)
     if operation.version:
-        print 'Version info: ', operation.version
+        # print 'Version info: ', operation.version
         print paser.version
     if operation.debug:
         print 'Debug: ', operation.debug
@@ -97,12 +97,13 @@ Options and arguments:
         input_file = open(operation.file)
         sens = input_file.readlines()
         input_file.close()
-        print 'Start segment the input lines'
+        print 'Start segment the input lines...'
         results = seg.segment(sens)
+        print 'Segment outcome:'
         for result in results:
             print result
         #  write the result to the specified file
-        print results
+        # print results
         if operation.out:
             write_result = open(operation.out, 'w')
             for result in results:
