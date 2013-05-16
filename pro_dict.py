@@ -16,6 +16,7 @@ class ProDict(object):
         self.longest_length = self.get_longest_length_of_vocable()
 
     def has_vocable(self, vocable):
+        ''' Check wheather the vocable is in the pro_dict.'''
         if vocable in self.pro_dict:
             return True
         else:
@@ -31,7 +32,7 @@ class ProDict(object):
                 length = len(k)
         return length
 
-    def get_tree_token_count(self,cur,pre1,pre2):
+    def get_tree_token_count(self, cur, pre1, pre2):
         # print cur
         # print pre1
         # print pre2
@@ -51,7 +52,7 @@ class ProDict(object):
         else:
             return 0.1
 
-    def get_pre_count(self,pre1,pre2):
+    def get_pre_count(self, pre1, pre2):
         if pre2 is None:
             prefix = 's_e'
         elif pre2 == 's':
@@ -78,8 +79,8 @@ class ProDict(object):
             return amount
 
     def get_pro(self, cur, pre1, pre2):
-        three_token_count = self.get_tree_token_count(cur,pre1,pre2)
-        pre_token_count = self.get_pre_count(pre1,pre2)
+        three_token_count = self.get_tree_token_count(cur, pre1, pre2)
+        pre_token_count = self.get_pre_count(pre1, pre2)
         pre_token_count = float(pre_token_count)
         three_token_count = float(three_token_count)
 
@@ -92,6 +93,7 @@ class ProDict(object):
 
 
     def _get_short_sen(self):
+        ''' Split the long sentence to short.'''
         # short_sen contains many small sentences string in list.
         short_sen = []
         
@@ -120,6 +122,7 @@ class ProDict(object):
         return short_sen
 
     def _get_sen_words(self):
+        ''' Split the short sentences to words.'''
         sen_words = []
         sen_words_file_name = 'sen_words.txt'
         short_sen = self._get_short_sen()
@@ -143,6 +146,7 @@ class ProDict(object):
         return sen_words
 
     def _get_pro_dict(self):
+        ''' Get the pro_dict of every words.'''
         pro_dict = {}
         pro_dict_file_name = 'pro_dict.txt'
         if self.train_file is None:
@@ -170,10 +174,10 @@ class ProDict(object):
             pro_dict_file = open(pro_dict_file_name, 'w')
             cPickle.dump(pro_dict, pro_dict_file)
 
-        buf = open('keys.txt', 'w')
-        for k in pro_dict:
-            buf.write(k.encode('utf-8') + '\n')
-        buf.close()
+        # buf = open('keys.txt', 'w')
+        # for k in pro_dict:
+        #     buf.write(k.encode('utf-8') + '\n')
+        # buf.close()
 
         pro_dict_file.close()
         return pro_dict
@@ -183,12 +187,11 @@ class ProDict(object):
         for d in self.pro_dict.values():
             for k, v in d.items():
                 prefix_dict[k] = prefix_dict.get(k, 0) + v
-        #for k in prefix_dict:
-        #    print k, prefix_dict[k]
-        #print len(prefix_dict)
+        # for k in prefix_dict:
+        #     print k, prefix_dict[k]
+        # print len(prefix_dict)
         return prefix_dict
 
-        
 
 
 if __name__ == '__main__':
