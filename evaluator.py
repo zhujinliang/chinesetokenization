@@ -1,19 +1,29 @@
-__author__ = 'zdj'
-class Evaluator:
+# -*- coding: utf-8 -*-
+
+
+class Evaluator(object):
     def __init__(self, result_path, test_path):
-        self.result_path = result_path
-        self.test_path = test_path
-        self.result_token_list = []
-        self.test_token_list = []
+        self.result_token_list = self.get_result_list(result_path)
+        self.test_token_list = self.get_test_set_list(test_path)
         self.match_num = 0
 
-    def get_token_list(self, path, token_list):
-        file = open(path)
-        r_list = file.readlines()
-        file.close()
-        for r in r_list:
-            tokens = r.split()
-            token_list.__iadd__(tokens)
+    def get_test_set_list(self, path):
+        f = open(path)
+        token_list = []
+        for r in f:
+            tokens = r.split('  ')
+            token_list.append(tokens)
+        f.close()
+        return token_list
+
+    def get_result_list(self, path):
+        f = open(path)
+        token_list = []
+        for r in f:
+            tokens = r.split(' ')
+            token_list.append(tokens)
+        f.close()
+        return token_list
 
     def get_match_number(self):
         test_l = 0
@@ -41,11 +51,11 @@ class Evaluator:
         return self.match_num
 
     def get_recall_rate(self):
-        rate = (float)(self.match_num) / (float)(len(self.test_token_list))
+        rate = float(self.match_num) / float(len(self.test_token_list))
         return  rate
 
     def get_precision_rate(self):
-        rate = (float)(self.match_num) / (float)(len(self.test_token_list))
+        rate = float(self.match_num) / float(len(self.test_token_list))
         return rate
 
 if __name__ == "__main__":
