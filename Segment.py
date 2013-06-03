@@ -16,7 +16,7 @@ class Segment(object):
         self.pro_dictionary = None
         self.graph_nodes_list = []
         self.debug = False
-        self.separator = u' '
+        self.separator = u'  '
 
     def cut_into_short_sentence(self, input_stc):
         re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')

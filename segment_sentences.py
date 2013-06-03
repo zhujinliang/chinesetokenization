@@ -105,7 +105,7 @@ Options and arguments:
         #  write the result to the specified file
         # print results
         if operation.out:
-            write_result = open(operation.out, 'w')
+            write_result = open(operation.out, 'aw')
             for result in results:
                 result = result.encode('utf-8')
                 write_result.write(result)
