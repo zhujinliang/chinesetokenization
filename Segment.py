@@ -51,8 +51,12 @@ class Segment(object):
             word = short_sentence[i]
             node = self.create_new_connected_node(word, self.temp_node_list[i], self.temp_node_list[i + 1])
             self.graph_nodes_list.append(node)
-        i = 0
-        j = i + 2
+        if num > 2:
+            i = 0
+            j = i + 2
+        else:
+            i = 0
+            j = i + 1
 
         while i < num - 1:
             word = short_sentence[i:j]
@@ -252,6 +256,7 @@ class Segment(object):
                     print u'/'.join(self.result_token)
             tokens = self.scan_sentence_for_result(tokens, sentence)
             result_str = self.separator.join(tokens)
+            result_str += '\n'
             seg_sentence.append(result_str)
         return seg_sentence
 
@@ -260,9 +265,9 @@ if __name__ == '__main__':
 
     input_file = open('input_sentence.txt')
     sens = input_file.readlines()
-    print sens[0]
+    # print sens[0]
     # re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
-    # line=u'你 好，：：再见'
+    # line=u'本报巴黎２月５日电记者王芳报道：第一届欧亚文化论坛今天在巴黎开幕。中国代表团团长、中国驻法国公使衔文化参赞吴春德在今天的全体会议上作了发言。他指出，亚欧两大陆间的文化交流源远流长，在当今世界格局向多极化方向发展的时代，加强亚欧文化交流和合作，是亚欧间建立新型全面伙伴关系的重要方面。开展亚欧文化合作应遵循互相尊重、平等互利、求同存异、不干涉他国内政的原则。吴春德向大会提出了４项建议：２０００年在中国等国举办《亚欧文明集粹》展；加强亚欧艺术教育方面的交流；今年在中国举办“中国国际美术年”；中国愿在欧盟的支持下，派出优秀艺术团赴欧演出和举办文物展。'
     # sens=re_biaodian.split(line)
     # for s in sens:
     #     print s

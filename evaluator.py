@@ -54,6 +54,8 @@ class Evaluator(object):
         match_num = 0
         result_length = len(result)
         test_set_length = len(test)
+        i = 0
+        j = 0
         while True:
             if i >= test_set_length or j >= result_length:
                 break

@@ -14,6 +14,7 @@ class ProDict(object):
         self.pro_dict = self._get_pro_dict()
         self.prefix_dict = self._get_prefix_dict()
         self.longest_length = self.get_longest_length_of_vocable()
+        self.smooth_thread = 0.00001
 
     def has_vocable(self, vocable):
         ''' Check wheather the vocable is in the pro_dict.'''
@@ -48,9 +49,9 @@ class ProDict(object):
             if self.pro_dict[cur].has_key(prefix):
                 return self.pro_dict[cur][prefix]
             else:
-                return 0.1
+                return self.smooth_thread
         else:
-            return 0.1
+            return self.smooth_thread
 
     def get_pre_count(self, pre1, pre2):
         if pre2 is None:
@@ -75,7 +76,7 @@ class ProDict(object):
                         amount += v
                 else:
                     amount = 100000
-            amount += 0.1 * count
+            amount += self.smooth_thread * count
             return amount
 
     def get_pro(self, cur, pre1, pre2):
