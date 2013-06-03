@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Segment.py" afterPath="$PROJECT_DIR$/Segment.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/evaluator.py" afterPath="$PROJECT_DIR$/evaluator.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pro_dict.py" afterPath="$PROJECT_DIR$/pro_dict.py" />
     </list>
     <ignored path="chinesetokenization.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1370233186787" ignored="false" />
-    <file path="/Segment.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1370235168477" ignored="false" />
+    <file path="/Dummy.txt" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1370278763313" ignored="false" />
+    <file path="/Segment.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1370280394431" ignored="false" />
     <file path="/Node.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1368292143013" ignored="false" />
     <file path="$USER_HOME$/translate/rating_statistic_vector.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1367336739332" ignored="false" />
     <file path="/rating_statistic_vector.py" changelist="dd09638f-6b3b-42ef-8a35-8feb14c2a1ef" time="1367336738289" ignored="false" />
@@ -32,10 +30,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Segment.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="input_sentence.txt.backup" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input_sentence.txt.backup">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Segment.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Segment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="260" column="27" selection-start="10176" selection-end="10176" vertical-scroll-proportion="0.0">
+            <state line="27" column="0" selection-start="825" selection-end="825" vertical-scroll-proportion="0.38040346">
               <folding>
                 <element signature="e#61#79#0" expanded="true" />
               </folding>
@@ -43,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="result.txt" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="result.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/result.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0">
+            <state line="5" column="0" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -55,7 +62,7 @@
       <file leaf-file-name="input_sentence.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input_sentence.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="87" selection-end="361" vertical-scroll-proportion="0.0">
+            <state line="2" column="164" selection-start="336" selection-end="338" vertical-scroll-proportion="-0.9677419">
               <folding />
             </state>
           </provider>
@@ -86,19 +93,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Node.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Node.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pro_dict.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pro_dict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="219" column="42" selection-start="7218" selection-end="7218" vertical-scroll-proportion="-5.935484">
+            <state line="219" column="42" selection-start="7218" selection-end="7218" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -107,7 +105,7 @@
       <file leaf-file-name="segment_sentences.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/segment_sentences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="44" selection-start="4241" selection-end="4241" vertical-scroll-proportion="0.0">
+            <state line="109" column="44" selection-start="4242" selection-end="4242" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,7 +114,7 @@
       <file leaf-file-name="evaluator.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/evaluator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="35" selection-start="3071" selection-end="3082" vertical-scroll-proportion="0.0">
+            <state line="90" column="20" selection-start="3071" selection-end="3082" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -144,8 +142,9 @@
         <option value="$PROJECT_DIR$/segment_sentences.py" />
         <option value="$PROJECT_DIR$/evaluator.py" />
         <option value="$PROJECT_DIR$/pro_dict.py" />
-        <option value="$PROJECT_DIR$/Segment.py" />
         <option value="$PROJECT_DIR$/result.txt" />
+        <option value="$PROJECT_DIR$/input_sentence.txt.backup" />
+        <option value="$PROJECT_DIR$/Segment.py" />
       </list>
     </option>
   </component>
@@ -220,11 +219,11 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -375,11 +374,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34852117" sideWeight="0.60777956" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3922204" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35491607" sideWeight="0.6726094" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39059967" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3273906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3273906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -447,43 +446,19 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>255</line>
-          <option name="timeStamp" value="46" />
+          <line>233</line>
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>220</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>209</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>207</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Segment.py</url>
-          <line>274</line>
-          <option name="timeStamp" value="56" />
+          <line>232</line>
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="57" />
+      <option name="time" value="59" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Segment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="0" selection-start="3664" selection-end="3664" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#61#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Node.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="25" selection-start="422" selection-end="439" vertical-scroll-proportion="0.0">
@@ -520,11 +495,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sen_words.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train_seg.txt">
@@ -541,55 +516,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/segment_sentences.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="44" selection-start="4242" selection-end="4242" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pro_dict.txt">
+      <provider editor-type-id="text-editor">
+        <state line="9" column="4" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" />
+      </provider>
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pro_dict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="42" selection-start="7218" selection-end="7218" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/evaluator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="35" selection-start="3071" selection-end="3082" vertical-scroll-proportion="0.0">
+        <state line="90" column="20" selection-start="3071" selection-end="3082" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/input_sentence.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="87" selection-end="361" vertical-scroll-proportion="0.0">
+        <state line="2" column="164" selection-start="336" selection-end="338" vertical-scroll-proportion="-0.9677419">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/segment_sentences.py">
+    <entry file="file://$PROJECT_DIR$/input_sentence.txt.backup">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="44" selection-start="4241" selection-end="4241" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pro_dict.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="9" column="4" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pro_dict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="219" column="42" selection-start="7218" selection-end="7218" vertical-scroll-proportion="-5.935484">
+        <state line="1" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Segment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="260" column="27" selection-start="10176" selection-end="10176" vertical-scroll-proportion="0.0">
+        <state line="27" column="0" selection-start="825" selection-end="825" vertical-scroll-proportion="0.38040346">
           <folding>
             <element signature="e#61#79#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/result.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0">
-          <folding />
         </state>
       </provider>
     </entry>

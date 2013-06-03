@@ -23,9 +23,9 @@ class Segment(object):
         line = unicode(input_stc, 'utf-8')
         line = line.strip()
         self.sentences = re_biaodian.split(line)
-        for sen in self.sentences:
-            if sen is u'':
-                self.sentences.remove(sen)
+        while u'' in self.sentences:
+            self.sentences.remove(u'')
+
 
     def create_new_connected_node(self, word, pre_node, next_node):
         node = Node(word, None)
@@ -263,7 +263,7 @@ class Segment(object):
 
 if __name__ == '__main__':
 
-    input_file = open('input_sentence.txt')
+    input_file = open('input_sentence.txt.backup')
     sens = input_file.readlines()
     # print sens[0]
     # re_biaodian = re.compile(ur'[\u2014-\u2026\u3000-\u303F\uff01-\uff0c\uff1a-\uff1f]')
@@ -273,6 +273,7 @@ if __name__ == '__main__':
     #     print s
     # print sens
     seg = Segment()
+    seg.debug=True
     pro_dic = ProDict()
     seg.pro_dictionary = pro_dic
     results=seg.segment(sens)
