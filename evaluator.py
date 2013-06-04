@@ -18,31 +18,6 @@ class Evaluator(object):
         f.close()
         return token_list
 
-    #def get_match_number(self):
-    #    test_l = 0
-    #    result_l = 0
-    #    i = 0
-    #    j = 0
-    #    match_num = 0
-    #    while True:
-    #        if i >= len(self.test_token_list) or j >= len(self.result_token_list):
-    #            break
-    #        if test_l == result_l:
-    #            if self.result_token_list[j] == self. result_token_list:
-    #                self.match_num += 1
-    #            test_l += len(self.test_token_list[i])
-    #            result_l += len(self.result_token_list[j])
-    #            i += 1
-    #            j += 1
-
-    #        elif test_l > result_l:
-    #            result_l += len(self.result_token_list[j])
-    #            j += 1
-    #        elif result_l > test_l:
-    #            test_l += len(self.test_token_list[i])
-    #            i += 1
-    #    return self.match_num
-
     def get_match_number_of_sentence(self, result, test):
         match_num = 0
         result_length = len(result)

@@ -21,7 +21,6 @@ def segment_all(segment_file):
             in_file.close()
             os.system('./segment_sentences.py -f input_sentence.txt -o result.txt')
             line_list = []
-        # import ipdb; ipdb.set_trace()
     print 'Success!'
     return True
 
