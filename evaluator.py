@@ -95,7 +95,6 @@ class Evaluator(object):
         return rate
 
 if __name__ == "__main__":
-    # eva = Evaluator('result.txt', 'out_test_set.txt')
-    eva = Evaluator('result.txt', 'out.txt')
+    eva = Evaluator('result.txt', 'out_test_set.txt')
     print 'Precision Rate: ', eva.get_precision_rate()
     print 'Recall Rate: ', eva.get_recall_rate()
